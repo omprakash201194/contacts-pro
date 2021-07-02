@@ -1,7 +1,5 @@
 package com.omprakashgautam.app.contactspro.domain;
 
-import com.omprakashgautam.app.contactspro.enums.CommunicationType;
-import com.omprakashgautam.app.contactspro.enums.WebsiteType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -9,26 +7,26 @@ import lombok.ToString;
 import javax.persistence.*;
 
 /**
- * @author omprakash gautam
- * Created on 02-Jul-21 at 9:54 PM.
+ * The type Contact additional fields.
+ *
+ * @author omprakash gautam Created on 02-Jul-21 at 10:56 PM.
  */
 @Entity
 @Data
 @ToString
 @EqualsAndHashCode(callSuper = true)
-public class ContactWebsite extends  DomainObject{
-
+public class ContactAdditionalFields extends DomainObject {
     @Id
     @GeneratedValue
     private Long id;
 
-    private WebsiteType type;
-
-    private String url;
-
-    private boolean isDefault;
+    @ManyToOne
+    @JoinColumn(name="additional_field_id", nullable=false)
+    private AdditionalField additionalField;
 
     @ManyToOne(fetch= FetchType.LAZY)
     @JoinColumn(name="contact_id", nullable=false)
     private Contact contact;
+
+    private String fieldValue;
 }

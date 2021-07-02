@@ -20,7 +20,7 @@ import java.util.Set;
 @Data
 @ToString
 @EqualsAndHashCode(callSuper = true)
-public class Hobby extends  DomainObject{
+public class Hobby extends  DomainObject {
 
     @Id
     @GeneratedValue

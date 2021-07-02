@@ -57,6 +57,12 @@ public class Contact extends  DomainObject{
     @OneToMany(mappedBy="contact")
     private Set<ContactAddress> addresses;
 
+    @OneToMany(mappedBy="contact")
+    private Set<ContactAdditionalFields> contactAdditionalFields;
+
+    @OneToMany(mappedBy="contact")
+    private Set<SocialMediaProfiles> socialMediaProfiles;
+
     @ManyToMany(fetch=FetchType.LAZY)
     @JoinTable(
             name = "contact_hobby_mapping",

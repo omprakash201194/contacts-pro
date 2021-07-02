@@ -1,6 +1,7 @@
 package com.omprakashgautam.app.contactspro.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;

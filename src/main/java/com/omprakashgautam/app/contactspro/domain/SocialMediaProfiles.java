@@ -1,7 +1,6 @@
 package com.omprakashgautam.app.contactspro.domain;
 
-import com.omprakashgautam.app.contactspro.enums.CommunicationType;
-import com.omprakashgautam.app.contactspro.enums.WebsiteType;
+import com.omprakashgautam.app.contactspro.enums.SocialMediaPlatform;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -10,23 +9,23 @@ import javax.persistence.*;
 
 /**
  * @author omprakash gautam
- * Created on 02-Jul-21 at 9:54 PM.
+ * Created on 02-Jul-21 at 11:05 PM.
  */
 @Entity
 @Data
 @ToString
 @EqualsAndHashCode(callSuper = true)
-public class ContactWebsite extends  DomainObject{
+public class SocialMediaProfiles extends DomainObject {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    private WebsiteType type;
+    private SocialMediaPlatform platform;
 
     private String url;
 
-    private boolean isDefault;
+    private String profileId;
 
     @ManyToOne(fetch= FetchType.LAZY)
     @JoinColumn(name="contact_id", nullable=false)

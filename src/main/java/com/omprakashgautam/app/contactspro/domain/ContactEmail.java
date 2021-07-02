@@ -2,6 +2,7 @@ package com.omprakashgautam.app.contactspro.domain;
 
 import com.omprakashgautam.app.contactspro.enums.CommunicationType;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import javax.persistence.*;
@@ -14,7 +15,8 @@ import javax.persistence.*;
 @Entity
 @Data
 @ToString
-public class ContactEmail {
+@EqualsAndHashCode(callSuper = true)
+public class ContactEmail extends  DomainObject{
     @Id
     @GeneratedValue
     private Long id;

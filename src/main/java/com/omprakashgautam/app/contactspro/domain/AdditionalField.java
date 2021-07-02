@@ -7,28 +7,26 @@ import lombok.ToString;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import java.util.Set;
 
 /**
- * The type Groups.
+ * The type Additional field.
  *
- * @author omprakash gautam Created on 02-Jul-21 at 9:37 PM.
+ * @author omprakash gautam Created on 02-Jul-21 at 10:58 PM.
  */
 @Entity
 @Data
 @ToString
 @EqualsAndHashCode(callSuper = true)
-public class Groups extends DomainObject {
+public class AdditionalField extends DomainObject {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    private String name;
+    @OneToMany(mappedBy="additionalField")
+    private Set<ContactAdditionalFields> contactAdditionalFields;
 
-    private boolean isFavorite;
-
-    @ManyToMany(mappedBy = "groups")
-    private Set<Contact> contacts;
+    private boolean isCustom;
 }
