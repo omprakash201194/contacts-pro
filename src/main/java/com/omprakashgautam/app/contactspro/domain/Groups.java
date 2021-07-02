@@ -1,6 +1,5 @@
 package com.omprakashgautam.app.contactspro.domain;
 
-import com.omprakashgautam.app.contactspro.enums.HobbyType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -12,26 +11,24 @@ import javax.persistence.ManyToMany;
 import java.util.Set;
 
 /**
- * The type Hobby.
+ * The type Groups.
  *
- * @author omprakash gautam Created on 02-Jul-21 at 9:29 PM.
+ * @author omprakash gautam Created on 02-Jul-21 at 9:37 PM.
  */
 @Entity
 @Data
 @ToString
 @EqualsAndHashCode(callSuper = true)
-public class Hobby extends  DomainObject{
+public class Groups extends DomainObject{
 
     @Id
     @GeneratedValue
     private Long id;
 
-    private HobbyType type;
-
     private String name;
 
     private boolean isFavorite;
 
-    @ManyToMany(mappedBy = "hobbies")
+    @ManyToMany(mappedBy = "groups")
     private Set<Contact> contacts;
 }

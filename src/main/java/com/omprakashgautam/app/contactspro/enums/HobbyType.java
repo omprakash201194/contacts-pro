@@ -1,5 +1,15 @@
 package com.omprakashgautam.app.contactspro.enums;
 
+/**
+ * The enum Hobby type.
+ */
 public enum HobbyType {
-    INDOOR, OUTDOOR
+    /**
+     * Indoor hobby type.
+     */
+    INDOOR,
+    /**
+     * Outdoor hobby type.
+     */
+    OUTDOOR
 }

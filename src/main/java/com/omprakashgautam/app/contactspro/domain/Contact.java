@@ -3,6 +3,8 @@ package com.omprakashgautam.app.contactspro.domain;
 import com.omprakashgautam.app.contactspro.enums.Gender;
 import com.omprakashgautam.app.contactspro.enums.Language;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -10,11 +12,14 @@ import java.time.Period;
 import java.util.Set;
 
 /**
- * @author omprakash gautam
- * Created on 02-Jul-21 at 7:49 PM.
+ * The type Contact.
+ *
+ * @author omprakash gautam Created on 02-Jul-21 at 7:49 PM.
  */
-@Data
 @Entity
+@Data
+@ToString
+@EqualsAndHashCode(callSuper = true)
 public class Contact extends  DomainObject{
     @Id
     @GeneratedValue
@@ -31,6 +36,7 @@ public class Contact extends  DomainObject{
     private LocalDate dateOfBirth;
     private String location;
     private String notes;
+    private boolean isFavorite;
 
     private Gender gender;
     private Language preferredLanguage;
@@ -39,16 +45,44 @@ public class Contact extends  DomainObject{
     @JoinColumn(name="occupation_id", nullable=false)
     private Occupation occupation;
 
+    @OneToMany(mappedBy="contact")
+    private Set<ContactEmail> emails;
+
+    @OneToMany(mappedBy="contact")
+    private Set<ContactPhone> phones;
+
+    @OneToMany(mappedBy="contact")
+    private Set<ContactWebsite> websites;
+
+    @OneToMany(mappedBy="contact")
+    private Set<ContactAddress> addresses;
+
     @ManyToMany(fetch=FetchType.LAZY)
     @JoinTable(
-            name = "contact_hobby",
+            name = "contact_hobby_mapping",
             joinColumns = @JoinColumn(name = "contact_id"),
             inverseJoinColumns = @JoinColumn(name = "hobby_id"))
     private Set<Hobby> hobbies;
 
+    @ManyToMany(fetch=FetchType.LAZY)
+    @JoinTable(
+            name = "contact_group_mapping",
+            joinColumns = @JoinColumn(name = "contact_id"),
+            inverseJoinColumns = @JoinColumn(name = "group_id"))
+    private Set<Groups> groups;
 
+    @ManyToMany(fetch=FetchType.LAZY)
+    @JoinTable(
+            name = "contact_organization_mapping",
+            joinColumns = @JoinColumn(name = "contact_id"),
+            inverseJoinColumns = @JoinColumn(name = "organization_id"))
+    private Set<Organization> organizations;
 
-
+    /**
+     * Gets age.
+     *
+     * @return the age
+     */
     public int getAge() {
         return Period.between(dateOfBirth, LocalDate.now()).getYears();
     }

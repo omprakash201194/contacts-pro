@@ -1,5 +1,19 @@
 package com.omprakashgautam.app.contactspro.enums;
 
+/**
+ * The enum Language.
+ */
 public enum Language {
-    ENGLISH, HINDI, MARATHI
+    /**
+     * English language.
+     */
+    ENGLISH,
+    /**
+     * Hindi language.
+     */
+    HINDI,
+    /**
+     * Marathi language.
+     */
+    MARATHI
 }

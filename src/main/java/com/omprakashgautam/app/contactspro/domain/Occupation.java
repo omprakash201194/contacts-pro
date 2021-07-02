@@ -12,8 +12,9 @@ import javax.persistence.OneToMany;
 import java.util.Set;
 
 /**
- * @author omprakash gautam
- * Created on 02-Jul-21 at 9:14 PM.
+ * The type Occupation.
+ *
+ * @author omprakash gautam Created on 02-Jul-21 at 9:14 PM.
  */
 @Entity
 @Data
