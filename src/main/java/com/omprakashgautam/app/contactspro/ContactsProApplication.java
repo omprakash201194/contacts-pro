@@ -13,6 +13,7 @@ public class ContactsProApplication {
 
 	//TODO 1. Setup SQL scripts to add tables - for postgres
 	//TODO 2. Add repository layer
+	//TODO 2.1: Add entity listeners to automatically updated created on and updated on
 	//TODO 3. Add Service layer
 	//TODO 4: Add Rest layer
 	//TODO 5: Add swagger to document api's
