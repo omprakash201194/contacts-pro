@@ -1,6 +1,7 @@
 package com.omprakashgautam.app.contactspro.mapper;
 
 import com.omprakashgautam.app.contactspro.domain.Contact;
+import com.omprakashgautam.app.contactspro.dto.ContactAllDTO;
 import com.omprakashgautam.app.contactspro.dto.ContactDTO;
 import org.mapstruct.*;
 
@@ -23,7 +24,7 @@ public interface MapStructMapper {
     @Mappings({
             @Mapping(target="dateOfBirth", source = "dateOfBirth",
                     dateFormat = "dd-MM-yyyy HH:mm:ss")})
-    List<ContactDTO> contactsToContactDTOs(List<Contact> contacts);
+    List<ContactAllDTO> contactsToContactDTOs(List<Contact> contacts);
 
 
 }

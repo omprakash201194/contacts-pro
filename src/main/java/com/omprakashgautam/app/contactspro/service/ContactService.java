@@ -1,6 +1,7 @@
 package com.omprakashgautam.app.contactspro.service;
 
 import com.omprakashgautam.app.contactspro.domain.Contact;
+import com.omprakashgautam.app.contactspro.dto.ContactAllDTO;
 import com.omprakashgautam.app.contactspro.dto.ContactDTO;
 import com.omprakashgautam.app.contactspro.mapper.MapStructMapper;
 import com.omprakashgautam.app.contactspro.repository.ContactRepository;
@@ -25,7 +26,7 @@ public class ContactService {
     }
 
 
-    public List<ContactDTO> getContactList() {
+    public List<ContactAllDTO> getContactList() {
         return mapstructMapper.contactsToContactDTOs(contactRepository.findAll());
     }
 
