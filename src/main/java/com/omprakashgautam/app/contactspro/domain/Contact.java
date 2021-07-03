@@ -22,7 +22,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class Contact extends  DomainObject {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String firstName;

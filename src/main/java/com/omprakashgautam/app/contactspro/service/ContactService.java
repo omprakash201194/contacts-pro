@@ -18,16 +18,16 @@ import java.util.UUID;
 @Service
 public class ContactService {
     private final ContactRepository contactRepository;
-    private final MapStructMapper mapstructMapper;
+    private final MapStructMapper mapper;
 
-    public ContactService(ContactRepository contactRepository, MapStructMapper mapstructMapper) {
+    public ContactService(ContactRepository contactRepository, MapStructMapper mapper) {
         this.contactRepository = contactRepository;
-        this.mapstructMapper = mapstructMapper;
+        this.mapper = mapper;
     }
 
 
     public List<ContactAllDTO> getContactList() {
-        return mapstructMapper.contactsToContactDTOs(contactRepository.findAll());
+        return mapper.contactsToContactDTOs(contactRepository.findAll());
     }
 
     public ContactDTO getContactById(String id) {
@@ -35,6 +35,11 @@ public class ContactService {
         Contact contact = optionalContact.orElseThrow(() -> {
             throw new IllegalStateException(("No contact found with given id"));
         });
-        return mapstructMapper.contactToContactDTO(contact);
+        return mapper.contactToContactDTO(contact);
+    }
+
+    public ContactDTO addContact(ContactDTO contactDTO) {
+        Contact savedContact = contactRepository.save(mapper.contactDTOToContact(contactDTO));
+        return mapper.contactToContactDTO(savedContact);
     }
 }

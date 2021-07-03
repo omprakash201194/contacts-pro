@@ -6,10 +6,7 @@ import com.omprakashgautam.app.contactspro.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.Link;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -48,17 +45,28 @@ public class ContactController {
 
     @GetMapping(path = "/{id}")
     public ContactDTO getContactById(@PathVariable("id") String id){
-        ContactDTO contactById = contactService.getContactById(id);
+        ContactDTO contactDTO = contactService.getContactById(id);
 
+        linkContact(contactDTO);
+
+        return contactDTO;
+    }
+
+    private void linkContact(ContactDTO contact) {
         Link selfLink = linkTo(methodOn(ContactController.class)
-                .getContactById(contactById.getUuid().toString())).withSelfRel();
-        contactById.add(selfLink);
+                .getContactById(contact.getUuid().toString())).withSelfRel();
+        contact.add(selfLink);
 
         Link link = linkTo(methodOn(ContactController.class)
                 .getContacts()).withRel("contacts");
+        contact.add(link);
+    }
 
-        contactById.add(link);
-        return contactById;
+    @PostMapping
+    public ContactDTO addContact(@RequestBody ContactDTO contactDTO) {
+        ContactDTO savedContactDto = contactService.addContact(contactDTO);
+        linkContact(savedContactDto);
+        return savedContactDto;
     }
 
 }

@@ -20,6 +20,7 @@ import java.util.UUID;
 public interface MapStructMapper {
 
     ContactDTO contactToContactDTO(Contact contact);
+    Contact contactDTOToContact(ContactDTO contactDto);
 
     @Mappings({
             @Mapping(target="dateOfBirth", source = "dateOfBirth",
