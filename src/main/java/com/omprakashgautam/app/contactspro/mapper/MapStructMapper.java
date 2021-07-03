@@ -18,10 +18,12 @@ import java.util.UUID;
 )
 public interface MapStructMapper {
 
-    String SPACE = " ";
+    ContactDTO contactToContactDTO(Contact contact);
 
     @Mappings({
             @Mapping(target="dateOfBirth", source = "dateOfBirth",
                     dateFormat = "dd-MM-yyyy HH:mm:ss")})
     List<ContactDTO> contactsToContactDTOs(List<Contact> contacts);
+
+
 }

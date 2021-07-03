@@ -6,7 +6,6 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.Period;
 import java.util.Set;
 
 /**
@@ -84,13 +83,4 @@ public class Contact extends  DomainObject {
             joinColumns = @JoinColumn(name = "contact_id"),
             inverseJoinColumns = @JoinColumn(name = "organization_id"))
     private Set<Organization> organizations;
-
-    /**
-     * Gets age.
-     *
-     * @return the age
-     */
-  /*  public int getAge() {
-        return Period.between(dateOfBirth, LocalDate.now()).getYears();
-    }*/
 }

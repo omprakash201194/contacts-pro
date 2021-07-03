@@ -7,14 +7,22 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 
 /**
  * The type Contacts pro application.
  */
 @SpringBootApplication
+@EnableSwagger2
 public class ContactsProApplication {
 
 	/**
@@ -49,6 +57,28 @@ public class ContactsProApplication {
 
 
 	@Bean
+	public Docket api() {
+		return new Docket(DocumentationType.SWAGGER_2)
+				.select()
+				.apis(RequestHandlerSelectors.basePackage("com.omprakashgautam.app.contactspro.controller"))
+				.paths(PathSelectors.any())
+				.build()
+			.apiInfo(apiInfo());
+	}
+
+	private ApiInfo apiInfo() {
+		return new ApiInfo(
+				"Contact Pro Rest API's",
+				"Contact Pro Rest API's for operations",
+				"v1",
+				"Terms of service",
+				new springfox.documentation.service.Contact("Omprakash Gautam",
+						"www.omprakashgautam.com",
+						"omprakash201194@gmail.com"),
+				"License of API", "API license URL", Collections.emptyList());
+	}
+
+	@Bean
 	CommandLineRunner commandLineRunner(ContactRepository contactRepository) {
 		return args -> {
 			Contact om = Contact.builder()
@@ -70,8 +100,6 @@ public class ContactsProApplication {
 					.gender(Gender.MALE)
 					.isFavorite(true)
 					.build();
-
-
 			contactRepository.saveAll(List.of(om,stuart));
 		};
 
