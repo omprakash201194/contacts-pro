@@ -2,9 +2,7 @@ package com.omprakashgautam.app.contactspro.domain;
 
 import com.omprakashgautam.app.contactspro.enums.Gender;
 import com.omprakashgautam.app.contactspro.enums.Language;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -20,7 +18,10 @@ import java.util.Set;
 @Data
 @ToString
 @EqualsAndHashCode(callSuper = true)
-public class Contact extends  DomainObject{
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class Contact extends  DomainObject {
     @Id
     @GeneratedValue
     private Long id;
@@ -42,7 +43,7 @@ public class Contact extends  DomainObject{
     private Language preferredLanguage;
 
     @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="occupation_id", nullable=false)
+    @JoinColumn(name="occupation_id")
     private Occupation occupation;
 
     @OneToMany(mappedBy="contact")
@@ -89,7 +90,7 @@ public class Contact extends  DomainObject{
      *
      * @return the age
      */
-    public int getAge() {
+  /*  public int getAge() {
         return Period.between(dateOfBirth, LocalDate.now()).getYears();
-    }
+    }*/
 }

@@ -1,9 +1,11 @@
 package com.omprakashgautam.app.contactspro.domain;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Id;
+import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDate;
 import java.util.UUID;
@@ -15,6 +17,7 @@ import java.util.UUID;
  */
 @Data
 @MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
 public class DomainObject {
 
     /**
@@ -22,14 +25,18 @@ public class DomainObject {
      */
     protected UUID uuid = UUID.randomUUID();
 
-    /**
-     * The Created on.
-     */
-    protected LocalDate createdOn;
 
     /**
-     * The Updated on.
+     * The Created date.
      */
-    protected LocalDate updatedOn;
+    @CreatedDate
+    protected LocalDate createdDate;
+
+
+    /**
+     * The Last modified date.
+     */
+    @LastModifiedDate
+    protected LocalDate lastModifiedDate;
 
 }
