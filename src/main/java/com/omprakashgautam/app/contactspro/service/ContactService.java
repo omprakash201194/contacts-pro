@@ -4,6 +4,7 @@ import com.omprakashgautam.app.contactspro.domain.Contact;
 import com.omprakashgautam.app.contactspro.dto.ContactAllDTO;
 import com.omprakashgautam.app.contactspro.dto.ContactDTO;
 import com.omprakashgautam.app.contactspro.dto.PostContactDTO;
+import com.omprakashgautam.app.contactspro.exception.InvalidInputException;
 import com.omprakashgautam.app.contactspro.mapper.MapStructMapper;
 import com.omprakashgautam.app.contactspro.repository.ContactRepository;
 import org.springframework.beans.BeanUtils;
@@ -40,7 +41,7 @@ public class ContactService {
     private Contact getContact(String id) {
         Optional<Contact> optionalContact = contactRepository.findByuuid(UUID.fromString(id));
         return optionalContact.orElseThrow(() -> {
-            throw new IllegalStateException(("No contact found with given id"));
+            throw new InvalidInputException("No contact found with given id");
         });
     }
 
