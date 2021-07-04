@@ -1,33 +1,27 @@
-package com.omprakashgautam.app.contactspro.domain;
+package com.omprakashgautam.app.contactspro.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.omprakashgautam.app.contactspro.enums.Gender;
 import com.omprakashgautam.app.contactspro.enums.Language;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.hateoas.RepresentationModel;
 
-import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.UUID;
 
 /**
- * The type Contact.
+ * The type Contact dto.
  *
- * @author omprakash gautam Created on 02-Jul-21 at 7:49 PM.
+ * @author omprakash gautam Created on 03-Jul-21 at 5:54 PM.
  */
-@Entity
-@Data
-@ToString
-@EqualsAndHashCode(callSuper = true)
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class Contact extends  DomainObject {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+@Getter
+@Setter
+public class PostContactDTO extends RepresentationModel<PostContactDTO>{
     private String firstName;
     private String middleName;
     private String lastName;
+    private boolean isFavorite;
     private String nameSuffix;
     private String namePrefix;
     private String initials;
@@ -36,12 +30,11 @@ public class Contact extends  DomainObject {
     private LocalDate dateOfBirth;
     private String location;
     private String notes;
-    private Boolean isFavorite;
 
     private Gender gender;
     private Language preferredLanguage;
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    /*@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="occupation_id")
     private Occupation occupation;
 
@@ -63,7 +56,7 @@ public class Contact extends  DomainObject {
     @OneToMany(mappedBy="contact")
     private Set<SocialMediaProfiles> socialMediaProfiles;
 
-    @ManyToMany(fetch=FetchType.LAZY)
+    @ManyToMany(fetch= FetchType.LAZY)
     @JoinTable(
             name = "contact_hobby_mapping",
             joinColumns = @JoinColumn(name = "contact_id"),
@@ -82,5 +75,5 @@ public class Contact extends  DomainObject {
             name = "contact_organization_mapping",
             joinColumns = @JoinColumn(name = "contact_id"),
             inverseJoinColumns = @JoinColumn(name = "organization_id"))
-    private Set<Organization> organizations;
+    private Set<Organization> organizations;*/
 }

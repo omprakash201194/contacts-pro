@@ -3,6 +3,7 @@ package com.omprakashgautam.app.contactspro.mapper;
 import com.omprakashgautam.app.contactspro.domain.Contact;
 import com.omprakashgautam.app.contactspro.dto.ContactAllDTO;
 import com.omprakashgautam.app.contactspro.dto.ContactDTO;
+import com.omprakashgautam.app.contactspro.dto.PostContactDTO;
 import org.mapstruct.*;
 
 import java.time.LocalDateTime;
@@ -20,7 +21,7 @@ import java.util.UUID;
 public interface MapStructMapper {
 
     ContactDTO contactToContactDTO(Contact contact);
-    Contact contactDTOToContact(ContactDTO contactDto);
+    Contact contactDTOToContact(PostContactDTO contactDto);
 
     @Mappings({
             @Mapping(target="dateOfBirth", source = "dateOfBirth",

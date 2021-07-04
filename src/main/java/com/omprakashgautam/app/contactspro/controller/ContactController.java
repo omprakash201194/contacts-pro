@@ -2,10 +2,13 @@ package com.omprakashgautam.app.contactspro.controller;
 
 import com.omprakashgautam.app.contactspro.dto.ContactAllDTO;
 import com.omprakashgautam.app.contactspro.dto.ContactDTO;
+import com.omprakashgautam.app.contactspro.dto.PostContactDTO;
 import com.omprakashgautam.app.contactspro.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.Link;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -63,10 +66,29 @@ public class ContactController {
     }
 
     @PostMapping
-    public ContactDTO addContact(@RequestBody ContactDTO contactDTO) {
+    public ContactDTO addContact(@RequestBody PostContactDTO contactDTO) {
         ContactDTO savedContactDto = contactService.addContact(contactDTO);
         linkContact(savedContactDto);
         return savedContactDto;
     }
 
+    @PutMapping("/{id}")
+    public ContactDTO updateContact(@PathVariable("id") String id, @RequestBody PostContactDTO contactDTO) {
+        ContactDTO updateContact = contactService.updateContact(id, contactDTO);
+        linkContact(updateContact);
+        return updateContact;
+    }
+
+    @PatchMapping("/{id}")
+    public ContactDTO patchContact(@PathVariable("id") String id, @RequestBody PostContactDTO contactDTO) {
+        ContactDTO patchContact = contactService.patchContact(id, contactDTO);
+        linkContact(patchContact);
+        return patchContact;
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteContact(@PathVariable("id") String id) {
+        contactService.deleteContactById(id);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
 }
