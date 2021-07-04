@@ -36,15 +36,15 @@ public class ContactsProApplication {
 
 
 	//TODO 1. Setup SQL scripts to add tables - for postgres
-	//TODO 2. Add repository layer
-	//TODO 2.1: Add entity listeners to automatically update createdOn and updatedOn
-	//TODO 3. Add Service layer
-	//TODO 4: Add Rest layer
-	//TODO 5: Add swagger to document api's
-	//TODO 6: Configure Logging - logback
+	//Add repository layer - done
+	//Add entity listeners to automatically update createdOn and updatedOn - done
+	//Add Service layer - done
+	//Add Rest layer - done
+	//Add swagger to document api's - done
+	//Configure Logging - logback - done
 	//TODO 6.1: Add AOP using annotation to log method time consumption
-	//TODO 7: Add hateos to rest api
-	//TODO 8: Add global exception handler
+	//Add hateoas to rest api - done
+	//Add global exception handler - done
 	//TODO 9: Add unit test cases for each layer
 	//TODO 10: Add integration test cases
 	//TODO 11: Integrate Liquibase for tracking sql schema changes
