@@ -41,7 +41,8 @@ public class ContactsProApplication {
 	//TODO 3. Add Service layer
 	//TODO 4: Add Rest layer
 	//TODO 5: Add swagger to document api's
-	//TODO 6: Configure Logging
+	//TODO 6: Configure Logging - logback
+	//TODO 6.1: Add AOP using annotation to log method time consumption
 	//TODO 7: Add hateos to rest api
 	//TODO 8: Add global exception handler
 	//TODO 9: Add unit test cases for each layer
